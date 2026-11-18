@@ -3,6 +3,20 @@
 > 목표: **보내고 받는 모양**을 먼저 만든다. API는 다음 실습에서 붙인다.
 > 이 저장소는 **할 일 1번만 완성**되어 있고, 2~5번은 코드 안의 `TODO` 주석으로 안내한다.
 
+## 개선된 화면 (실습 1 + 실습 4)
+
+| 빈 상태 (TODO 4) | 말풍선 좌우 (TODO 2·3) | 응답 대기 — 점 3개 |
+|---|---|---|
+| <img src="docs/screenshots/01_empty.png" width="240"> | <img src="docs/screenshots/02_chat.png" width="240"> | <img src="docs/screenshots/03_typing.png" width="240"> |
+
+| 응답 도착 | 500 오류 + 다시 시도 | 401 오류 + 다시 시도 |
+|---|---|---|
+| <img src="docs/screenshots/04_reply.png" width="240"> | <img src="docs/screenshots/05_error.png" width="240"> | <img src="docs/screenshots/06_error_401.png" width="240"> |
+
+- **실습 1** — 말풍선 2종(사용자 오른쪽 / AI 왼쪽), 입력창 + 전송 버튼, 빈 상태 "무엇이든 물어보세요", 키보드가 입력창을 가리지 않음
+- **실습 4** — 상태 `sending · typing · error`: 전송 중 버튼 잠금 + 점 3개, 401/429/500/timeout 오류 말풍선 + 다시 시도(마지막 메시지 재전송), 429 지수 백오프 1s → 2s, `AnimatedSwitcher` 200ms 전환, Reduce Motion이면 즉시 표시
+- 프록시 없이 시험하려고 가짜 AI를 쓴다. 메시지에 `401` · `429` · `500` · `timeout`을 넣으면 그 오류가 난다.
+
 ## 실행
 
 ```bash
